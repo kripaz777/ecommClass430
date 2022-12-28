@@ -38,3 +38,12 @@ class SearchView(BaseView):
             return redirect('/')
         return render(request,'search.html',self.views)
 
+
+class ProductDetailView(BaseView):
+    def get(self,request,slug):
+        self.views['product_detail'] = Product.objects.filter(slug = slug)
+        subcat_id = Product.objects.get(slug = slug).subcategory_id
+        product_id = Product.objects.get(slug = slug).id
+        self.views['product_image'] = ProductImage.objects.filter(product_id=product_id)
+        self.views['subcat_product'] = Product.objects.filter(subcategory_id=subcat_id)
+        return render(request, 'product-detail.html', self.views)
