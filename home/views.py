@@ -51,6 +51,7 @@ class ProductDetailView(BaseView):
         product_id = Product.objects.get(slug = slug).id
         self.views['product_image'] = ProductImage.objects.filter(product_id=product_id)
         self.views['subcat_product'] = Product.objects.filter(subcategory_id=subcat_id)
+        self.views['products_reviews'] = ProductReview.objects.filter(slug=slug)
         return render(request, 'product-detail.html', self.views)
 
 
