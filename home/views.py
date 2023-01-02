@@ -3,6 +3,8 @@ from django.views.generic import View
 from .models import *
 from django.contrib.auth.models import User
 from django.contrib import messages
+#from django.contrib.auth import authenticate, login
+
 
 # Create your views here.
 class BaseView(View):
@@ -72,8 +74,33 @@ def signup(request):
                     password = password
                 )
                 data.save()
+                # user = authenticate(username=username, password= pass)
+                #
+                # login(request, user)
+               #return redirect('/')
+                return redirect('/accounts/login')
         else:
             messages.error(request, 'Password does not match !')
             return redirect('/signup')
 
     return render(request,'signup.html')
+
+import datetime
+def product_review(request,slug):
+    if request.method == 'POST':
+        username = request.user.username
+        email = request.user.email
+        comment = request.POST['comment']
+        star = request.POST['star']
+        x = datetime.datetime.now()
+        date = str(x.strftime("%c"))
+        data = ProductReview.objects.create(
+            username = username,
+            email = email,
+            comment = comment,
+            star = star,
+            date = date,
+            slug = slug
+        )
+        data.save()
+    return redirect(f"/details/{slug}")

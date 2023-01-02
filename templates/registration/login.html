@@ -12,35 +12,31 @@
             </div>
         </div>
         <!-- Breadcrumb End -->
-
+        
         <!-- Login Start -->
         <div class="login">
             <div class="container-fluid">
                 <div class="row">
-                    <form method = "POST">
-                        {% csrf_token %}
-                        {% for message in messages %}
-                    <center><font color ="red">{{message}}</font></center>
-                    {% endfor %}
+                   <form method = "POST">
+                       {% csrf_token %}
                     <div class="col-lg-6">
-                        <div class="register-form">
+                        <div class="login-form">
                             <div class="row">
-
-                                <div class="col-md-6">
-                                    <label>E-mail</label>
-                                    <input name = "email" class="form-control" type="email" placeholder="E-mail">
-                                </div>
                                 <div class="col-md-6">
                                     <label>Username</label>
-                                    <input name = "username" class="form-control" type="text" placeholder="Username">
+<!--                                    <input class="form-control" type="text" placeholder="E-mail / Username">-->
+                                    {{form.username}}
                                 </div>
                                 <div class="col-md-6">
                                     <label>Password</label>
-                                    <input name = "password" class="form-control" type="password" placeholder="Password">
+<!--                                    <input class="form-control" type="text" placeholder="Password">-->
+                                    {{form.password}}
                                 </div>
-                                <div class="col-md-6">
-                                    <label>Retype Password</label>
-                                    <input name = "cpassword" class="form-control" type="password" placeholder="Confirm Password">
+                                <div class="col-md-12">
+                                    <div class="custom-control custom-checkbox">
+                                        <input type="checkbox" class="custom-control-input" id="newaccount">
+                                        <label class="custom-control-label" for="newaccount">Keep me signed in</label>
+                                    </div>
                                 </div>
                                 <div class="col-md-12">
                                     <button type = "submit" class="btn">Submit</button>
@@ -48,7 +44,7 @@
                             </div>
                         </div>
                     </div>
-                    </form>
+                   </form>
                 </div>
             </div>
         </div>
