@@ -10,6 +10,7 @@ from django.contrib import messages
 class BaseView(View):
     views = {}
     views['categories'] = Category.objects.all()
+    views['subcategories'] = SubCategory.objects.all()
     views['brands'] = Brand.objects.all()
     views['sale_products'] = Product.objects.filter(label='sale', stock='In stock')
 
@@ -106,6 +107,8 @@ def product_review(request,slug):
         data.save()
     return redirect(f"/details/{slug}")
 
+from django.contrib.auth.decorators import login_required
+@login_required
 def cart(request,slug):
     username = request.user.username
     if Cart.objects.filter(slug = slug,username = username,checkout = False).exists():

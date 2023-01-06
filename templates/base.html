@@ -55,6 +55,22 @@
                         <div class="navbar-nav mr-auto">
                             <a href="/" class="nav-item nav-link active">Home</a>
                         </div>
+                        {% for cat in categories %}
+                         <div class="navbar-nav ml-auto">
+                            <div class="nav-item dropdown">
+
+                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">{{cat.name}}</a>
+                                <div class="dropdown-menu">
+                                    {% for subcat in subcategories %}
+                                    {% if cat.id == subcat.category_id %}
+                                    <a href="" class="dropdown-item">{{subcat.name}}</a>
+                                    {% endif %}
+                                    {% endfor %}
+                                </div>
+
+                            </div>
+                        </div>
+                        {% endfor %}
                         <div class="navbar-nav ml-auto">
                             <div class="nav-item dropdown">
                                 {% if user.is_authenticated %}
@@ -84,8 +100,8 @@
                 <div class="row align-items-center">
                     <div class="col-md-3">
                         <div class="logo">
-                            <a href="index.html">
-                                <img src="img/logo.png" alt="Logo">
+                            <a href="/">
+                                <img src="{% static 'img/logo.png' %}" alt="Logo">
                             </a>
                         </div>
                     </div>
