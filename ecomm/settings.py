@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     "home",
     'rest_framework',
     'django_filters',
+    'ckeditor',
 ]
 
 MIDDLEWARE = [
@@ -114,9 +115,13 @@ LOGOUT_REDIRECT_URL = '/'
 # https://docs.djangoproject.com/en/4.1/howto/static-files/
 
 STATIC_URL = "static/"
-STATICFILES_DIRS = [
-    BASE_DIR / "static",
-]
+# STATICFILES_DIRS = [
+#     BASE_DIR / "static",
+# ]
+import os
+STATIC_ROOT = os.path.join(BASE_DIR, 'static/')
+CKEDITOR_BASEPATH = "/static/ckeditor/ckeditor/"
+
 
 # Base url to serve media files
 MEDIA_URL = '/media/'

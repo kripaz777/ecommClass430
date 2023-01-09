@@ -6,7 +6,19 @@ admin.site.register(SubCategory)
 admin.site.register(Slider)
 admin.site.register(Ad)
 admin.site.register(Brand)
-admin.site.register(Product)
+
+@admin.register(Product)
+class ProductAdmin(admin.ModelAdmin):
+    list_display = ("name", "price",'discounted_price','category','subcategory','label','stock')
+    list_filter = ('category','subcategory','label','stock')
+    search_fields = ("name","description")
+
+
 admin.site.register(ProductImage)
 admin.site.register(ProductReview)
-admin.site.register(Cart)
+
+@admin.register(Cart)
+class CartAdmin(admin.ModelAdmin):
+    list_display = ("username","quantity","checkout")
+    list_filter = ("checkout",)
+    search_fields = ("username", "description")

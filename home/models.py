@@ -1,4 +1,5 @@
 from django.db import models
+from ckeditor.fields import RichTextField
 
 # Create your models here.
 class Category(models.Model):
@@ -58,7 +59,7 @@ class Product(models.Model):
     subcategory = models.ForeignKey(SubCategory, on_delete=models.CASCADE)
     brand = models.ForeignKey(Brand,on_delete=models.CASCADE)
     description = models.TextField(blank=True)
-    specification = models.TextField(blank=True)
+    specification = RichTextField()
     slug = models.TextField(unique=True)
     stock = models.CharField(max_length=100,choices=STOCK)
     label = models.CharField(max_length=100,choices=LABELS,blank = True)
